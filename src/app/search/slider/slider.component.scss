@@ -1,0 +1,17 @@
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+
+  .icon {
+    font-size: 44px;
+    color: #1a4f91;
+  }
+
+  .text {
+    flex: 1;
+    color: #333;
+    font-weight: 400; 
+  }
+}

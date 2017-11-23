@@ -1,0 +1,11 @@
+<ng-container *ngFor="let slide of slides, let i = index">
+  <div class="slide" *ngIf="currentSlide==i">
+    <i class="icon material-icons">{{slide.icon}}</i>
+    <span class="text">{{slide.text}}</span>
+  </div>
+</ng-container>
+
+<!--
+  [@fadeIn]='stable'
+-->
+  
