@@ -7,10 +7,17 @@
 nav {
   height: 60px;
   padding: 0 20px;
-  display: flex;
-  align-items: center;
   background: #1a4f91;
   color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 main {
