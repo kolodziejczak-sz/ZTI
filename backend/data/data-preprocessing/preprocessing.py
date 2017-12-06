@@ -3,7 +3,8 @@ import re
 import os
 
 fname = "phone_dataset_new.csv"
-fpath = os.path.join(".",fname)
+fpath = os.path.join(".", fname)
+
 
 def has_gsm(string):
     if "GSM" in string:
@@ -11,11 +12,13 @@ def has_gsm(string):
     else:
         return ""
 
+
 def has_lte(string):
     if "LTE" in string:
         return "LTE"
     else:
         return ""
+
 
 def parse_GPRS(string):
     if "No" in str(string):
@@ -23,13 +26,17 @@ def parse_GPRS(string):
     else:
         return "Yes"
 
+
 def parse_EDGE(string):
     if "No" in str(string):
         return ""
     else:
         return "Yes"
 
+
 regex = re.compile(r'\d{4}')
+
+
 def parse_announced(string):
     matches = regex.search(str(string))
     if matches is not None:
@@ -37,20 +44,24 @@ def parse_announced(string):
     else:
         return 0
 
+
 def has_dualsim(string):
     if "dual" in str.lower(str(string)):
         return "Yes"
     else:
         return ""
 
+
 def has_display(regex):
     regex = re.compile(regex)
+
     def f(string):
         matches = regex.search(str(string))
         if matches is not None:
             return matches.group(0)
         else:
             return ""
+
     return f
 
 
@@ -62,6 +73,7 @@ def get_os_family(string):
             return os
     return ""
 
+
 def get_core_num(string):
     input_str = str.lower(str(string))
     if "dual" in input_str:
@@ -72,6 +84,7 @@ def get_core_num(string):
         return 8
     return 1
 
+
 def get_battery_type(type):
     def has_battery(string):
         input_str = str.lower(str(string))
@@ -79,7 +92,9 @@ def get_battery_type(type):
             return 'Yes'
         else:
             return ""
+
     return has_battery
+
 
 def isnt_no(string):
     if 'no' not in str.lower(str(string)):
@@ -88,8 +103,10 @@ def isnt_no(string):
         return ""
 
 
-dataframe = dd.read_csv(fpath, dtype={'4G_bands': 'object', 'GPRS':'object'})
-dataframe = dataframe.drop(['weight_oz','2G_bands','3G_bands','4G_bands','status','colors', 'loud_speaker', 'WLAN', 'USB', 'sensors'],axis=1)
+dataframe = dd.read_csv(fpath, dtype={'4G_bands': 'object', 'GPRS': 'object'})
+dataframe = dataframe.drop(
+    ['weight_oz', '2G_bands', '3G_bands', '4G_bands', 'status', 'colors', 'loud_speaker', 'WLAN', 'USB', 'sensors'],
+    axis=1)
 
 dataframe = dataframe.compute()
 
@@ -108,18 +125,17 @@ battery_type_list = ['li-ion', 'li-po']
 for b in battery_type_list:
     dataframe[b] = dataframe['battery'].apply(get_battery_type(b))
 
-displays_list =['AMOLED',
-	r'([^\w]|\b)OLED',
-	'TFT',
-	'LCD']
+displays_list = ['AMOLED',
+                 r'([^\w]|\b)OLED',
+                 'TFT',
+                 'LCD']
 
 for d in displays_list:
     dataframe[d] = dataframe['display_type'].apply(has_display(d))
 
-
 dataframe['OS-family'] = dataframe['OS'].apply(get_os_family)
 
-dataframe = dataframe.drop(['network_technology'],axis=1)
+dataframe = dataframe.drop(['network_technology'], axis=1)
 
 print(list(dataframe))
 print(dataframe)
