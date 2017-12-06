@@ -1,0 +1,1 @@
+{"Collections":[{"sheetName":"phone_dataset ","startColumn":"B","endColumn":"B","startRow":"2","endRow":"+","comment":"","rule":"Individual: @B*\n   Types: model\n   Facts: made_by @A*","active":true},{"sheetName":"phone_dataset ","startColumn":"A","endColumn":"A","startRow":"2","endRow":"+","comment":"","rule":"Individual: @A*\n   Types: brand","active":true}]}
