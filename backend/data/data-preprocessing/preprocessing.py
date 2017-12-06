@@ -2,7 +2,7 @@ import dask.dataframe as dd
 import re
 import os
 
-fname = "phone_dataset _new.csv"
+fname = "phone_dataset_new.csv"
 fpath = os.path.join(".",fname)
 
 def has_gsm(string):
@@ -54,13 +54,13 @@ def has_display(regex):
     return f
 
 
-def get_os_family(os):
-    def has_os(string):
-        if os in str(string):
-            return 'Yes'
-        else:
-            return ""
-    return has_os
+def get_os_family(string):
+    os_list = ['Android', 'Windows', 'iOS']
+    input_str = str(string)
+    for os in os_list:
+        if os in input_str:
+            return os
+    return ""
 
 def get_core_num(string):
     input_str = str.lower(str(string))
@@ -116,9 +116,8 @@ displays_list =['AMOLED',
 for d in displays_list:
     dataframe[d] = dataframe['display_type'].apply(has_display(d))
 
-os_list = ['Android', 'Windows', 'iOS']
-for os in os_list:
-    dataframe[os] = dataframe['OS'].apply(get_os_family(os))
+
+dataframe['OS-family'] = dataframe['OS'].apply(get_os_family)
 
 dataframe = dataframe.drop(['network_technology'],axis=1)
 
