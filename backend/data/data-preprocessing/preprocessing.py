@@ -1,4 +1,4 @@
-import dask.dataframe as dd
+import pandas as pd
 import re
 import os
 
@@ -103,12 +103,16 @@ def isnt_no(string):
         return ""
 
 
-dataframe = dd.read_csv(fpath, dtype={'4G_bands': 'object', 'GPRS': 'object'})
+def remove_no(string):
+    if str(string).lower() != 'no':
+        return string
+    else:
+        return ''
+
+dataframe = pd.read_csv(fpath, dtype={'4G_bands': 'object', 'GPRS': 'object'})
 dataframe = dataframe.drop(
     ['weight_oz', '2G_bands', '3G_bands', '4G_bands', 'status', 'colors', 'loud_speaker', 'WLAN', 'USB', 'sensors'],
     axis=1)
-
-dataframe = dataframe.compute()
 
 dataframe['GSM'] = dataframe['network_technology'].apply(has_gsm)
 dataframe['LTE'] = dataframe['network_technology'].apply(has_lte)
@@ -116,28 +120,16 @@ dataframe['GPRS'] = dataframe['GPRS'].apply(parse_GPRS)
 dataframe['EDGE'] = dataframe['EDGE'].apply(parse_EDGE)
 dataframe['announced'] = dataframe['announced'].apply(parse_announced)
 dataframe['DualSim'] = dataframe['SIM'].apply(has_dualsim)
+dataframe['radio'] = dataframe['radio'].apply(isnt_no)
+dataframe['audio_jack'] = dataframe['audio_jack'].apply(isnt_no)
+dataframe['memory_card'] = dataframe['memory_card'].apply(isnt_no)
+dataframe['secondary_camera'] = dataframe['secondary_camera'].apply(remove_no)
 dataframe['NumberOfCores'] = dataframe['CPU'].apply(get_core_num)
 dataframe['bluetooth'] = dataframe['bluetooth'].apply(isnt_no)
-dataframe['bluetooth'] = dataframe['bluetooth'].apply(isnt_no)
 dataframe['GPS'] = dataframe['GPS'].apply(isnt_no)
-
-battery_type_list = ['li-ion', 'li-po']
-for b in battery_type_list:
-    dataframe[b] = dataframe['battery'].apply(get_battery_type(b))
-
-displays_list = ['AMOLED',
-                 r'([^\w]|\b)OLED',
-                 'TFT',
-                 'LCD']
-
-for d in displays_list:
-    dataframe[d] = dataframe['display_type'].apply(has_display(d))
-
 dataframe['OS-family'] = dataframe['OS'].apply(get_os_family)
 
-dataframe = dataframe.drop(['network_technology'], axis=1)
+dataframe = dataframe.drop(['network_technology', 'SIM'], axis=1)
+dataframe.sort_values(['brand', 'model'], inplace=True)
 
-print(list(dataframe))
-print(dataframe)
-
-dataframe.to_csv('output.csv')
+dataframe.to_csv('output.csv', index=False)
