@@ -1,0 +1,162 @@
+:host {
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 20px;
+  width: 100px;
+  cursor: pointer;
+}
+
+figure {
+  margin: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  figcaption {
+    .brand, .model {
+      display: block;
+    }
+    .brand {
+      font-size: 30px;
+    }
+
+    .model {
+      font-size: 48px;
+      text-indent: 20px;
+    }
+  }
+
+  img {
+    margin-left: 10px;
+  }
+}
+
+.details {
+  box-sizing: border-box;
+  padding: 0 10px;
+  width: 100%;
+
+  h2 {
+    margin: 10px;
+    font-size: 16px;
+  }
+
+  .group {
+    float: left;
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 50%;
+  }
+
+  .table {
+    font-size: 12px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+  }
+
+  .row > div {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+
+    &:first-of-type {
+      width: 150px;
+    }
+
+    &:last-of-type {
+      flex: 1;
+    }
+  }
+
+  .row {
+    display: flex;
+
+    &:nth-child(even) {
+      background-color: #eff4f6;
+    }
+  }
+}
+
+@media screen and (max-width: 930px) and (max-width: 1230px) {
+  figure {
+    float: none;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+
+    .table {
+      flex: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 930px) and (max-width: 750px) {
+  .details {
+    justify-content: center;
+    align-items: center;
+  }
+  .table {
+    display: flex;
+
+    .group {
+      width: 100%;
+    }
+  }
+
+  .row {
+    display: flex !important;
+  
+    & > div {
+
+      &:first-of-type {
+        width: 120px;
+      }
+      &:last-of-type {
+        flex: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+
+  .details {
+    padding: 0 !important;
+  }
+  
+  .table {
+    display: block;
+  }
+  .group {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .row {
+    margin: 0 10px !important;
+
+    & > div {
+      &:first-of-type {
+        width: initial !important;
+        border-right: 0 !important; 
+      }
+
+      &:last-of-type {
+        text-align: right !important;
+        border-left: 0 !important; 
+      }
+    }
+  }
+}

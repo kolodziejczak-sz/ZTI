@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { SearchService } from './search.service';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'search',
@@ -10,12 +7,9 @@ import { SearchService } from './search.service';
 })
 export class SearchComponent {
 
-  constructor(
-    private searchService: SearchService,
-    private router: Router
-  ) {}
+  @Output() submit = new EventEmitter<string>();
 
   public search(input: string) {
-    this.router.navigate(['/search', input]);
+    this.submit.emit(input);
   }
 }

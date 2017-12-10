@@ -1,0 +1,19 @@
+<div *ngIf="form">
+<form [formGroup]="form">
+  <div class="form-group os" formGroupName="os">
+    <div class="form-control">
+      <input id="android" type="checkbox" formControlName="android"/>        
+      <label for="android">Android</label>
+    </div>
+    <div class="form-control">
+      <input id="ios" type="checkbox" formControlName="iOS"/>        
+      <label for="ios">iOS</label>
+    </div>
+    <div class="form-control">
+      <input id="otheros" type="checkbox" formControlName="others"/>        
+      <label for="otheros">Others</label>
+    </div>
+  </div>
+  <pre>{{ form.value  | json }} </pre>
+</form>
+</div>

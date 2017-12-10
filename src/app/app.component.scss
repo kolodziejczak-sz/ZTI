@@ -6,6 +6,7 @@
 
 nav {
   height: 60px;
+  min-height: 60px;
   padding: 0 20px;
   background: #1a4f91;
   color: #fff;
@@ -14,9 +15,11 @@ nav {
   align-items: center;
   
   .logo {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    outline: 0;
   }
 }
 
@@ -27,7 +30,7 @@ main {
 footer {
   background: #333;
   color: #666;
-  height: 100px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

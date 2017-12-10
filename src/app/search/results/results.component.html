@@ -1,0 +1,9 @@
+<div class="sidebar">
+  <search (submit)="inputSubmit($event)"></search>
+  <filter></filter>  
+</div>
+<div class="tiles">
+  <tile *ngFor="let phone of phones" 
+        [data]="phone"
+        (click)="goToDetail($event)"></tile>
+</div>

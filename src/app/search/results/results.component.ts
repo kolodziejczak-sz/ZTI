@@ -18,7 +18,15 @@ export class ResultsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  public inputSubmit(inputValue: string):void {
+    this.searchService.goSearch(inputValue);
+  }
+
+  public goToDetail(id: number): void {
+    this.searchService.goToDetail(id);
+  }
+
+  public ngOnInit() {
     this.route
     .queryParamMap
     .map(params => params.get('name') || '')

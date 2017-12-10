@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  padding: 10px;
+}
+
+.sidebar {
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid #ccc;
+
+  search {
+    margin-bottom: 20px;
+  }
+}
+
+.tiles {
+  flex: 1;
+}
+
+tile {
+  width: 200px;
+  margin: 5px;
+}

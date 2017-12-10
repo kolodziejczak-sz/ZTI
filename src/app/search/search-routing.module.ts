@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SearchComponent } from './search.component';
-import { SliderComponent } from './slider/slider.component';
 import { ResultsComponent } from './results/results.component';
+import { MainComponent } from './main/main.component';
+import { DetailComponent } from './results/detail/detail.component';
 
 const searchRoutes: Routes = [
-  { path: '', 
-    component: SearchComponent, 
-    children: [
-      { path: '', component: SliderComponent },
-      { path: 'search/:name', component: ResultsComponent }    
-    ]
-  }
+  { path: '',  component: MainComponent },
+  { path: 'search/:name', component: ResultsComponent },
+  { path: 'detail/:id', component: DetailComponent }      
 ];
 
 @NgModule({

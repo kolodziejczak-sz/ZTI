@@ -1,0 +1,22 @@
+<button class="btn" (click)="goBack()">
+  <i class="material-icons">undo</i>
+  <span>Back</span>
+</button>
+<figure>
+  <figcaption>
+    <span class="brand">{{ phone?.brand }}</span>
+    <span class="model">{{ phone?.model }}</span>
+  </figcaption>
+  <img [src]="phone?.img_url"/>
+</figure>
+<section class="details">
+  <h2>Full Specification</h2>
+  <div class="table">
+    <div class="group" *ngFor="let group of groups">
+      <div class="row" *ngFor="let row of group">
+          <div>{{ row[0] | prettyString }}</div>
+          <div>{{ row[1] }}</div>
+        </div>
+    </div>
+  </div>
+</section>
