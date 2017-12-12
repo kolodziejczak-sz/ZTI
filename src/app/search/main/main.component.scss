@@ -7,6 +7,16 @@
   align-items: center;
 }
 
+.wrapper {
+  width: 100%;
+  background: #fafbfc;
+  border-bottom: 1px solid #e1e4e8;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
 search {
   min-width: 400px;
 }

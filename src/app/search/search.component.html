@@ -1,5 +1,9 @@
 <div class="search-tool">
-  <i class="material-icons icon">search</i>
-  <input type="text" class="form-control" #input (keyup.enter)="search(input.value)"/>
-  <button class="btn" (click)="search(input.value)">Search</button>
+  <input placeholder="Search"
+         type="text" 
+         class="form-control" 
+         #input (keyup.enter)="search(input.value)"/>
+  <button class="btn" (click)="search(input.value)">
+    <i class="material-icons icon">search</i>
+  </button>
 </div>

@@ -1,15 +1,16 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 100vh
+  height: 100%;
 }
 
 nav {
+  box-sizing: border-box;
   height: 60px;
   min-height: 60px;
   padding: 0 20px;
-  background: #1a4f91;
-  color: #fff;
+  background: #24292e;
+  color: rgba(255,255,255,.75);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -20,6 +21,11 @@ nav {
     justify-content: center;
     align-items: center;
     outline: 0;
+
+    .icon {
+      color: #fff;
+      margin-right: 5px;
+    }
   }
 }
 
@@ -30,6 +36,7 @@ main {
 footer {
   background: #333;
   color: #666;
+  box-sizing: border-box;
   height: 30px;
   display: flex;
   justify-content: center;
