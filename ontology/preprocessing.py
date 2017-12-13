@@ -112,8 +112,10 @@ def remove_no(string):
 
 
 def is_expressed_in_GB(value):
-    if "GB" in str(value):
+    if value is 0 or "GB" in str(value):
         return True
+    else:
+        return False
 
 GBs_of_RAM_regex = re.compile(r'(\d+\.?\d*) GB RAM')
 
@@ -145,6 +147,8 @@ dataframe['bluetooth'] = dataframe['bluetooth'].apply(isnt_no)
 dataframe['GPS'] = dataframe['GPS'].apply(isnt_no)
 dataframe['OS-family'] = dataframe['OS'].apply(get_os_family)
 
+
+dataframe['RAM'] = dataframe['RAM'].fillna(0)
 dataframe = dataframe[dataframe.RAM.apply(is_expressed_in_GB) == True]
 dataframe['RAM'] = dataframe['RAM'].apply(get_GBs_of_RAM)
 dataframe = dataframe.drop(['network_technology', 'SIM'], axis=1)
