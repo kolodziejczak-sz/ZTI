@@ -34,11 +34,11 @@ def parse_EDGE(string):
         return "Yes"
 
 
-regex = re.compile(r'\d{4}')
+announced_in_regex = re.compile(r'\d{4}')
 
 
 def parse_announced(string):
-    matches = regex.search(str(string))
+    matches = announced_in_regex.search(str(string))
     if matches is not None:
         return matches.group(0)
     else:
@@ -109,6 +109,22 @@ def remove_no(string):
     else:
         return ''
 
+
+
+def is_expressed_in_GB(value):
+    if "GB" in str(value):
+        return True
+
+GBs_of_RAM_regex = re.compile(r'(\d+\.?\d*) GB RAM')
+
+def get_GBs_of_RAM(value):
+    matches = GBs_of_RAM_regex.search(str(value))
+    if matches is not None:
+        return float(matches.group(1))
+    else:
+        return 0
+
+
 dataframe = pd.read_csv(fpath, dtype={'4G_bands': 'object', 'GPRS': 'object'})
 dataframe = dataframe.drop(
     ['weight_oz', '2G_bands', '3G_bands', '4G_bands', 'status', 'colors', 'loud_speaker', 'WLAN', 'USB', 'sensors'],
@@ -129,6 +145,8 @@ dataframe['bluetooth'] = dataframe['bluetooth'].apply(isnt_no)
 dataframe['GPS'] = dataframe['GPS'].apply(isnt_no)
 dataframe['OS-family'] = dataframe['OS'].apply(get_os_family)
 
+dataframe = dataframe[dataframe.RAM.apply(is_expressed_in_GB) == True]
+dataframe['RAM'] = dataframe['RAM'].apply(get_GBs_of_RAM)
 dataframe = dataframe.drop(['network_technology', 'SIM'], axis=1)
 dataframe.sort_values(['brand', 'model'], inplace=True)
 
