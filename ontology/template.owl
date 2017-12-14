@@ -212,6 +212,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Android -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Android">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#CPU -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#CPU"/>
@@ -224,10 +232,22 @@
     
 
 
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#android -->
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPU -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#android">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#os"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPU"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Windows -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Windows">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
     </owl:Class>
     
 
@@ -244,42 +264,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_AMOLED -->
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#iOS -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_AMOLED">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_LCD -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_LCD">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_LED -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_LED">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_TFT -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_TFT">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#ios -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#ios">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#os"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#iOS">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
     </owl:Class>
     
 
@@ -290,43 +278,92 @@
     
 
 
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#os -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#os"/>
-    
-
-
     <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
     
 
 
-    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#windows -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#windows">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#os"/>
-    </owl:Class>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // General axioms
+    // Individuals
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_AMOLED"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_LCD"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_LED"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_TFT"/>
-        </owl:members>
-    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#EDGE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#EDGE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPRS -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPRS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPS -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GSM -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GSM">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#LTE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#LTE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#NFC -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#NFC">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#dualSim -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#dualSim">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#memory_card -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#memory_card">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#radio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#radio">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
