@@ -14,8 +14,9 @@ export class SearchService {
 
   private mockupData = phones;
 
-  public goSearch(input: string): void {
-    this.router.navigate(['/search', input]);
+  public goSearch(input: string, filter): void {
+    if(input) filter.query=input;
+    this.router.navigate(['/search', filter])
   }
 
   public goToDetail(id: number): void {
@@ -23,16 +24,24 @@ export class SearchService {
   }
 
   public fetchDetail(id: number): Observable<any> {
-    console.log(id);
     const phone = phones.filter(phone => phone.id===id).pop();
-    console.log(phones);
     return Observable.create(observer => {
       observer.next(phone);
       observer.complete();
     })
   }
 
-  public getPhones(name: string, params?): Observable<any> {
+  public getFilterData(): Observable<any> {
+    return Observable.create(observer => {
+      observer.next({
+        os: ['android', 'ios', 'windows'],
+        brands: ['lg', 'acer', 'xiaomi', 'huawei', 'apple']
+      });
+      observer.complete();
+    })
+  }
+
+  public getPhones(params): Observable<any> {
     return Observable.create(observer => {
       observer.next(phones);
       observer.complete();

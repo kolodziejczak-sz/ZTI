@@ -1,19 +1,39 @@
-<div *ngIf="form">
-<form [formGroup]="form">
-  <div class="form-group os" formGroupName="os">
+<ng-container *ngIf="form">
+  <form [formGroup]="form">
     <div class="form-control">
-      <input id="android" type="checkbox" formControlName="android"/>        
-      <label for="android">Android</label>
+      <label>OS</label>
+      <select formControlName="os">
+        <option value="">Any</option>
+        <option *ngFor="let os of filterData.os" [value]="os">{{ os | prettyString }}</option>
+      </select>
     </div>
     <div class="form-control">
-      <input id="ios" type="checkbox" formControlName="iOS"/>        
-      <label for="ios">iOS</label>
+      <label>Brand</label>
+      <select formControlName="brand">
+        <option value="">Any</option>
+        <option *ngFor="let brand of filterData.brands" [value]="brand">{{ brand | prettyString }}</option>
+      </select>
     </div>
     <div class="form-control">
-      <input id="otheros" type="checkbox" formControlName="others"/>        
-      <label for="otheros">Others</label>
+      <label>Price</label>
+      <div class="range">
+        <input formControlName="price-from" type="number" placeholder="from"/>
+        <input formControlName="price-to" type="number" placeholder="to"/>
+      </div>
     </div>
-  </div>
-  <pre>{{ form.value  | json }} </pre>
-</form>
-</div>
+    <div class="form-control">
+      <label>RAM (GB)</label>
+      <div class="range">
+        <input formControlName="ram-from" type="number" placeholder="from"/>
+        <input formControlName="ram-to" type="number" placeholder="to"/>
+      </div>
+    </div>
+    <div class="form-control">
+      <label>Display inch</label>
+      <div class="range">
+        <input formControlName="display-inch-from" type="number" placeholder="from"/>
+        <input formControlName="display-inch-to" type="number" placeholder="to"/>
+      </div>
+    </div>
+  </form>
+</ng-container>

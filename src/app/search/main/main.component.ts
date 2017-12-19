@@ -9,12 +9,13 @@ import { SearchService } from '../search.service';
 
 export class MainComponent {
 
+  public filterVisibility = false;
+
   constructor(
     private searchService: SearchService
-  ) {
+  ) {}
 
-  }
-  public inputSubmit(inputValue: string): void {
-    this.searchService.goSearch(inputValue);
+  public toggleFilter() {
+    this.filterVisibility=!this.filterVisibility;
   }
 }

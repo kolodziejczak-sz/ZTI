@@ -1,6 +1,6 @@
 <div class="sidebar">
-  <search (submit)="inputSubmit($event)"></search>
-  <filter></filter>  
+  <search [value]="params?.query" (submit)="searchService.goSearch($event,filterRef.getValue())"></search>
+  <filter class="column" [value]="params" #filterRef></filter>  
 </div>
 <div class="tiles">
   <tile *ngFor="let phone of phones" 

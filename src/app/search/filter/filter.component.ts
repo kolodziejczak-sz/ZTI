@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Filter } from './filter';
 import 'rxjs/add/operator/finally'
 import 'rxjs/add/operator/takeUntil';
-import { Subscription } from 'rxjs/Subscription';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'filter',
@@ -11,53 +11,46 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./filter.component.scss']
 })
 
-export class FilterComponent implements OnInit, OnDestroy {
-
-  @Output() change = new EventEmitter<Filter>();
-  public form: FormGroup;
-  private formSubscribtion: Subscription;
+export class FilterComponent implements OnInit {
   
-  constructor(private fb: FormBuilder) {}
+  @Input() value:Filter;
+  public form: FormGroup;
+  public filterData: Filter;
+  
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService
+  ) {}
 
   public ngOnInit() {
     this.form = this.buildForm();
-    this.startPassingValueChanges();
+    if(this.value) this.setInitValue();
+    this.searchService.getFilterData().subscribe(filterData => this.filterData=filterData);
   }
 
-  public ngOnDestroy(): void {
-    this.formSubscribtion.unsubscribe();
+  public getValue(): Filter {
+    return Object.keys(this.form.value).reduce((obj, key) => {    
+      if (!!this.form.value[key]){
+        obj[key] = this.form.value[key];
+      }
+      return obj;
+    }, {});
+  }
+
+  private setInitValue() {
+    this.form.patchValue(this.value);
   }
 
   private buildForm(): FormGroup {
-    const form = this.fb.group({
-      // producent: this.fb.group({
-      //   apple: false,
-      //   windows: false,
-      //   google: false
-      // }),
-      // price: this.fb.group({
-      //   from: '',
-      //   to: ''
-      // }),
-       os: this.fb.group({
-         android: false,
-         iOS: false,
-         others: false
-       }),
-      // display: this.fb.group({
-      //   from: '',
-      //   to: ''
-      // }),
-      // dualSim: this.fb.group({
-      //   yes: false,
-      //   no: false
-      // })
+    return this.fb.group({
+      'os': ['', [Validators.required]],
+      'brand': ['', [Validators.required]],
+      'price-from': ['', [Validators.min(0)]],
+      'price-to': ['', [Validators.min(0)]],
+      'ram-from': ['', [Validators.min(0), Validators.max(100)]],
+      'ram-to': ['', [Validators.min(0), Validators.max(100)]],
+      'display-inch-from': ['', [Validators.min(0), Validators.max(10)]],
+      'display-inch-to': ['', [Validators.min(0), Validators.max(10)]]
     })
-    return form;
-  }
-
-  private startPassingValueChanges(): void{
-    this.formSubscribtion = this.form.valueChanges
-      .subscribe(form => this.change.emit(form));    
   }
 }

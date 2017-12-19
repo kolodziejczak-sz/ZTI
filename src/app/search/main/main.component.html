@@ -1,4 +1,11 @@
 <div class="wrapper">
-    <slider></slider>    
+    <slider></slider>
 </div>
-<search (submit)="inputSubmit($event)"></search>
+<search (submit)="searchService.goSearch($event,filterRef.getValue())"></search>
+
+<div class="filter-trigger" [class.show]="filterVisibility" (click)="toggleFilter()">
+    <span *ngIf="filterVisibility">Hide filter</span>
+    <span *ngIf="!filterVisibility">Show filter</span>
+    <i class="material-icons">filter_list</i>
+</div>
+<filter class="inline" #filterRef></filter>

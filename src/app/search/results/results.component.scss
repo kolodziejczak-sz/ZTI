@@ -4,11 +4,14 @@
 }
 
 .sidebar {
+  width: 280px;
+  box-sizing: border-box;
   padding-right: 10px;
   margin-right: 10px;
   border-right: 1px solid #ccc;
 
   search {
+    width: 100%;
     margin-bottom: 20px;
   }
 }
