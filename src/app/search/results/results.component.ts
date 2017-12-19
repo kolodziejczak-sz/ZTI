@@ -14,6 +14,8 @@ export class ResultsComponent implements OnInit {
 
   public phones;
   public params;
+  public sidebarVisibility=true;
+  public err=false;
 
   constructor(
     private searchService: SearchService, 
@@ -25,14 +27,21 @@ export class ResultsComponent implements OnInit {
     this.searchService.goToDetail(id);
   }
 
+  public toggleSidebar(): void {
+    this.sidebarVisibility=!this.sidebarVisibility;
+  }
+
   public ngOnInit() {
     this.router.routeReuseStrategy.shouldReuseRoute = this.alwaysFalse;
 
     this.route.params.subscribe(params => {
       this.params = params;
       this.searchService
-        .getPhones(params)
-        .subscribe(phones => this.phones=phones)
+        .getPhones()
+        .subscribe(
+          phones => this.phones=phones,
+          err => this.err=true
+        )
     });
   }
 

@@ -1,9 +1,41 @@
-<div class="sidebar">
-  <search [value]="params?.query" (submit)="searchService.goSearch($event,filterRef.getValue())"></search>
-  <filter class="column" [value]="params" #filterRef></filter>  
-</div>
-<div class="tiles">
-  <tile *ngFor="let phone of phones" 
-        [data]="phone"
-        (click)="goToDetail($event)"></tile>
+<ng-container *ngIf="!err">
+  <i class="material-icons filter-icon" 
+    [class.opened]="sidebarVisibility"
+    (click)="toggleSidebar()">filter_list</i>
+  <div class="wrapper"></div>
+  <div class="sidebar">
+    <search [value]="params?.query" (submit)="searchService.goSearch($event,filterRef.getValue())"></search>
+    <filter class="column" [value]="params" #filterRef></filter>  
+  </div>
+  <div class="tiles" *ngIf="phones && phones.length > 0">
+    <tile *ngFor="let phone of phones" 
+          [data]="phone"
+          (click)="goToDetail($event)"></tile>
+  </div>
+  <div class="no-found" *ngIf="phones && phones.length===0">
+    <i class="material-icons sadface">mood_bad</i>
+    <div class="text">
+        <p>Unfortunately we couldnt find thing you looking for :(</p>
+        <ul>
+            <li>you might wanna check if your query is written corectly</li>
+            <li>select less parameters</li>
+            <li>look for another brand</li>
+        </ul>
+        <p>... don't give up!</p>
+    </div>
+  </div>
+  <div class="loading" *ngIf="!phones">
+      <div class="loader"></div>
+  </div>
+</ng-container>
+<div class="err" *ngIf="err">
+  <i class="material-icons sadface">signal_wifi_off</i>
+  <div class="text">
+      <p>Some error occured during fetchning phones. Try the following:</p>
+      <ul>
+          <li>you might wanna check if you have internet connection</li>
+          <li>refresh this page</li>
+          <li>pay us visit us another time</li>
+      </ul>
+  </div>
 </div>

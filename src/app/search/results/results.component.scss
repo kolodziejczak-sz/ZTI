@@ -1,15 +1,38 @@
 :host {
   display: flex;
-  padding: 10px;
+}
+
+.filter-icon {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 8px;
+  border-radius: 50%;
+  color: #ccc;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255,255,255,.05);
+  }
+}
+
+.sidebar,.tiles {
+  padding-top: 10px;
 }
 
 .sidebar {
+  padding: 10px;
+  z-index: 3;
+  background: #fff;
   width: 280px;
   box-sizing: border-box;
   padding-right: 10px;
   margin-right: 10px;
   border-right: 1px solid #ccc;
-
+  transition: all .6s;
+  
   search {
     width: 100%;
     margin-bottom: 20px;
@@ -23,4 +46,103 @@
 tile {
   width: 200px;
   margin: 5px;
+}
+
+
+
+@media screen and (max-width: 825px) {
+
+  .filter-icon.opened {
+    background: rgba(255,255,255,.1);
+    padding: 8px;
+    color: #fff;
+  }
+
+  .wrapper {
+    transition: background .5s;
+  }
+
+  .filter-icon.opened + .wrapper {
+    position: absolute;
+    top: 60px;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,.5);
+    transition: background .5s;
+  }
+  
+  .filter-icon.opened ~ .sidebar {
+    transform: translateX(0);
+  }
+  
+  .filter-icon ~ .sidebar {
+    transform: translateX(-100%); 
+  }  
+
+  .tiles {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  .filter-icon {
+    display: initial;
+  }
+
+  .sidebar {
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    margin: 0;
+    border: 1px solid #ccc;
+    border-left: 0;
+    border-top: 0;
+    position: absolute;
+  }
+}
+
+.no-found, .err {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+
+  .sadface {
+    font-size: 80px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  ul {
+    list-style-type: square;
+    padding-left: 20px; 
+  }
+}
+
+.loading {
+  flex: 1;
+  display: flex;
+}
+
+.loader {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid rgb(121, 121, 121); 
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
