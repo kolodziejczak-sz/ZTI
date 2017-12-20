@@ -2,21 +2,39 @@
   <i class="material-icons">navigate_before</i>
   <span>Back</span>
 </button>
-<figure>
-  <figcaption>
-    <span class="brand">{{ phone?.brand }}</span>
-    <span class="model">{{ phone?.model }}</span>
-  </figcaption>
-  <img [src]="phone?.img_url"/>
-</figure>
-<section class="details">
-  <h2>Full Specification</h2>
-  <div class="table">
-    <div class="group" *ngFor="let group of groups">
-      <div class="row" *ngFor="let row of group">
-          <div>{{ row[0] | prettyString }}</div>
-          <div>{{ row[1] }}</div>
+
+<ng-container *ngIf="!err">
+  <ng-container *ngIf="phone">
+    <figure>
+      <figcaption>
+        <span class="brand">{{ phone.brand }}</span>
+        <span class="model">{{ phone.model }}</span>
+      </figcaption>
+      <img [src]="phone?.img_url"/>
+    </figure>
+    <section class="details">
+      <h2>Full Specification</h2>
+      <div class="table">
+        <div class="group" *ngFor="let group of groups">
+          <div class="row" *ngFor="let row of group">
+              <div>{{ row[0] | prettyString }}</div>
+              <div>{{ row[1] }}</div>
+            </div>
         </div>
-    </div>
+      </div>
+    </section>
+  </ng-container>
+  <div class="loading" *ngIf="!phone">
+    <div class="loader"></div>
   </div>
-</section>
+</ng-container>
+<div class="err" *ngIf="err">
+  <i class="material-icons sadface">mood_bad</i>
+  <div class="text">
+    <p>Unfortunately we couldnt fetch this specific phone.</p>
+    <ul>
+        <li>you might wanna check if your URL correct</li>
+        <li>you might lost your internet connection</li>
+    </ul>
+</div>
+</div>

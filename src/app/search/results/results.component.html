@@ -1,13 +1,13 @@
+<i class="material-icons filter-icon" 
+  [class.opened]="sidebarVisibility"
+  (click)="toggleSidebar()">filter_list</i>
+<div class="wrapper"></div>
+<div class="sidebar">
+  <search [value]="params?.query" (submit)="searchService.goSearch($event,filterRef.getValue())"></search>
+  <filter class="column" [value]="params" #filterRef></filter>  
+</div>
 <ng-container *ngIf="!err">
-  <i class="material-icons filter-icon" 
-    [class.opened]="sidebarVisibility"
-    (click)="toggleSidebar()">filter_list</i>
-  <div class="wrapper"></div>
-  <div class="sidebar">
-    <search [value]="params?.query" (submit)="searchService.goSearch($event,filterRef.getValue())"></search>
-    <filter class="column" [value]="params" #filterRef></filter>  
-  </div>
-  <div class="tiles" *ngIf="phones && phones.length > 0">
+    <div class="tiles" *ngIf="phones && phones.length > 0">
     <tile *ngFor="let phone of phones" 
           [data]="phone"
           (click)="goToDetail($event)"></tile>

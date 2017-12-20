@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../search.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { setTimeout } from 'timers';
 
 @Component({
   selector: 'detail',
@@ -11,7 +12,8 @@ import { Location } from '@angular/common';
 
 export class DetailComponent implements OnInit {
 
-  public phone
+  public phone;
+  public err = false;
 
   constructor(
     private searchService: SearchService,
@@ -44,7 +46,10 @@ export class DetailComponent implements OnInit {
     .map(params => params.get('id') || '')
     .subscribe(id => {
       this.searchService.fetchDetail(+id)
-      .subscribe(phone => this.phone = phone)
+      .subscribe(
+        phone => this.phone = phone,
+        err => this.err = true
+      )
     });
   }
 

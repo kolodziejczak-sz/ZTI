@@ -165,3 +165,48 @@ figure {
     }
   }
 }
+
+.err {
+  padding: 40px 0 20px 20px;
+  display: flex;
+  align-items: flex-start;
+
+  .sadface {
+    font-size: 80px;
+    margin-right: 20px;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  ul {
+    list-style-type: square;
+    padding-left: 20px; 
+  }
+}
+
+.loading {
+  flex: 1;
+  display: flex;
+}
+
+.loader {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid rgb(121, 121, 121); 
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
