@@ -33,8 +33,9 @@ app.get('/api/detail/:model', function (req, res) {
 
 app.get('/api/list/os', function (req, res) {
   console.log('listing operating systems')
-  var sparql_query = "SELECT ?s ?o WHERE {?s <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones:has_os> ?o}"
-    //"@PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones>" +
+  var sparql_query ="PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
+    "SELECT DISTINCT ?os {?p " +
+    " phones:has_os ?os}"//"Select * {?s ?p ?o}"
 
   console.log("query: "+sparql_query)
   rdf_s.execute(sparql_query, function (err, result) {
