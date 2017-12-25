@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    port = 8888;
+    port = 7777;
 
 var rdfController = require("../../backend/server/controllers/rdfController.js")
 
@@ -24,6 +24,7 @@ app.put('/', function (req, res) {
 app.get('/api/detail/:model', function (req, res) {
   console.log('looking for data about: '+req.params.model)
   var sparql_query = "SELECT * {<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#"+req.params.model+"> ?p ?o }"
+  console.log("query: "+sparql_query)
   rdf_s.execute(sparql_query, function (err, result) {
     console.log(result)
     res.send(result)
@@ -32,10 +33,34 @@ app.get('/api/detail/:model', function (req, res) {
 
 app.get('/api/list/os', function (req, res) {
   console.log('listing operating systems')
-  var sparql_query = "" +
-    "@PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
-    "Select * WHERE {?s <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones:has_os> ?o}"
+  var sparql_query = "SELECT ?s ?o WHERE {?s <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones:has_os> ?o}"
+    //"@PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones>" +
+
+  console.log("query: "+sparql_query)
   rdf_s.execute(sparql_query, function (err, result) {
+    console.log(result)
+    res.send(result)
+  })
+})
+
+//AcerDX900
+app.get('/api/TEST', function (req, res) {
+  console.log('TESTING')
+
+    //"@PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
+    //"SELECT * {<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#> ?p ?o}"//"Select * {?s ?p ?o}"
+
+  // var sparql_query ="SELECT * {<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#AcerDX900> " +
+  //   " <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_os> ?o}"//"Select * {?s ?p ?o}"
+
+
+  var sparql_query ="PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
+    "SELECT ?o {phones:AcerDX900 " +
+    " phones:has_os ?o}"//"Select * {?s ?p ?o}"
+
+  console.log("query: "+sparql_query)
+  rdf_s.execute(sparql_query, function (err, result) {
+
     console.log(result)
     res.send(result)
   })
@@ -96,6 +121,8 @@ app.get('/api/list;matrix-uri', function (req, res) {
      filter_string
       +
     ")"
+
+  console.log("query: "+sparql_query)
   rdf_s.execute(sparql_query, function (err, result) {
     console.log(result)
     res.send(result)
