@@ -33,7 +33,7 @@ app.get('/api/detail/:model', function (req, res) {
 
 app.get('/api/list/os', function (req, res) {
   console.log('listing operating systems')
-  var sparql_query ="PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
+  var sparql_query = " PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
     "SELECT DISTINCT ?os {?p " +
     " phones:has_os ?os}"//"Select * {?s ?p ?o}"
 
@@ -55,10 +55,25 @@ app.get('/api/TEST', function (req, res) {
   //   " <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_os> ?o}"//"Select * {?s ?p ?o}"
 
 
-  var sparql_query ="PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
-    "SELECT ?o {phones:AcerDX900 " +
-    " phones:has_os ?o}"//"Select * {?s ?p ?o}"
-
+  // var sparql_query ="PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>" +
+  //   "SELECT DISTINCT ?os {?p " +
+  //   " phones:has_os ?os}"//"Select * {?s ?p ?o}"
+  var brand = "asus"
+  var os = "droid"
+  var sparql_query =" PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#> " +
+    " PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+    " PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> " +
+    " SELECT * {" +
+    "?model rdf:type phones:model ." +
+    "?model phones:price_eur ?price ." +
+    "?model phones:has_os ?os ." +
+    "?model phones:made_by ?brand . "+
+    "FILTER regex(str(?brand),\""+brand+"\", \"i\")" +
+    "FILTER (xsd:integer(?price) > 80)" +
+    "FILTER regex(str(?os),\""+os+"\")"+
+    "} "+
+    " LIMIT 20"+//"Select * {?s ?p ?o}"
+    ""
   console.log("query: "+sparql_query)
   rdf_s.execute(sparql_query, function (err, result) {
 
