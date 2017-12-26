@@ -63,14 +63,18 @@ app.get('/api/TEST', function (req, res) {
   var sparql_query =" PREFIX phones:<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#> " +
     " PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
     " PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> " +
+    " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
     " SELECT * {" +
     "?model rdf:type phones:model ." +
+    "?model rdfs:label ?label ." +
     "?model phones:price_eur ?price ." +
     "?model phones:has_os ?os ." +
     "?model phones:made_by ?brand . "+
+    "?model phones:display_size ?dsize . "+
     "FILTER regex(str(?brand),\""+brand+"\", \"i\")" +
     "FILTER (xsd:integer(?price) > 80)" +
     "FILTER regex(str(?os),\""+os+"\")"+
+    "FILTER (xsd:float(?dsize) > 4.0)" +
     "} "+
     " LIMIT 20"+//"Select * {?s ?p ?o}"
     ""
