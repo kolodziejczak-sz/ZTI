@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import re
 import os
 
@@ -110,28 +111,36 @@ def remove_no(string):
     return ''
 
 
-df = pd.read_csv(fpath, usecols=['brand', 'model', 'network_technology', 'GPRS', 'EDGE', 'announced', 'dimentions',
-                                 'weight_g', 'SIM', 'display_type', 'display_resolution', 'display_size', 'OS', 'CPU',
-                                 'Chipset', 'GPU', 'memory_card', 'internal_memory', 'RAM', 'primary_camera',
-                                 'secondary_camera', 'loud_speaker', 'audio_jack', 'WLAN', 'bluetooth', 'GPS', 'NFC',
-                                 'radio', 'battery', 'approx_price_EUR', 'img_url'])
+def process(size=0):
+  df = pd.read_csv(fpath, usecols=['brand', 'model', 'network_technology', 'GPRS', 'EDGE', 'announced', 'dimentions',
+                                   'weight_g', 'SIM', 'display_type', 'display_resolution', 'display_size', 'OS', 'CPU',
+                                   'Chipset', 'GPU', 'memory_card', 'internal_memory', 'RAM', 'primary_camera',
+                                   'secondary_camera', 'loud_speaker', 'audio_jack', 'WLAN', 'bluetooth', 'GPS', 'NFC',
+                                   'radio', 'battery', 'approx_price_EUR', 'img_url'])
 
-df['GSM'] = df['network_technology'].apply(has_gsm)
-df['LTE'] = df['network_technology'].apply(has_lte)
-df['GPRS'] = df['GPRS'].apply(parse_GPRS)
-df['EDGE'] = df['EDGE'].apply(parse_EDGE)
-df['announced'] = df['announced'].apply(parse_announced)
-df['DualSim'] = df['SIM'].apply(has_dualsim)
-df['radio'] = df['radio'].apply(isnt_no)
-df['audio_jack'] = df['audio_jack'].apply(isnt_no)
-df['memory_card'] = df['memory_card'].apply(isnt_no)
-df['secondary_camera'] = df['secondary_camera'].apply(remove_no)
-df['NumberOfCores'] = df['CPU'].apply(get_core_num)
-df['bluetooth'] = df['bluetooth'].apply(isnt_no)
-df['GPS'] = df['GPS'].apply(isnt_no)
-df['OS-family'] = df['OS'].apply(get_os_family)
+  df['GSM'] = df['network_technology'].apply(has_gsm)
+  df['LTE'] = df['network_technology'].apply(has_lte)
+  df['GPRS'] = df['GPRS'].apply(parse_GPRS)
+  df['EDGE'] = df['EDGE'].apply(parse_EDGE)
+  df['announced'] = df['announced'].apply(parse_announced)
+  df['DualSim'] = df['SIM'].apply(has_dualsim)
+  df['radio'] = df['radio'].apply(isnt_no)
+  df['audio_jack'] = df['audio_jack'].apply(isnt_no)
+  df['memory_card'] = df['memory_card'].apply(isnt_no)
+  df['secondary_camera'] = df['secondary_camera'].apply(remove_no)
+  df['NumberOfCores'] = df['CPU'].apply(get_core_num)
+  df['bluetooth'] = df['bluetooth'].apply(isnt_no)
+  df['GPS'] = df['GPS'].apply(isnt_no)
+  df['OS-family'] = df['OS'].apply(get_os_family)
 
-df = df.drop(['network_technology', 'SIM'], axis=1)
-df.sort_values(['brand', 'model'], inplace=True)
+  df = df.drop(['network_technology', 'SIM'], axis=1)
+  df.sort_values(['brand', 'model'], inplace=True)
 
-df.to_csv('output.csv', index=False, encoding='utf-8')
+  output_name = 'output.csv'
+
+  if size > 0:
+    df = df.take(np.random.permutation(len(df))[:size])
+    output_name = 'mini' + output_name
+  df.to_csv(output_name, index=False, encoding='utf-8')
+
+process()
