@@ -9,6 +9,6 @@ export const slides = [
   },
   {
     icon: 'check_circle',
-    text: 'A lot of clients recommends our service'
+    text: 'A lot of clients recommend our service'
   }
 ];
