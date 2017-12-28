@@ -2,16 +2,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { phones } from '../mockup-data';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class SearchService {
 
+  private os: Array<string>;
+  private brands: Array<string>;
   private mockupData = phones;
-  private baseUrl = 'localhost:4000';
+  private baseUrl = 'http://localhost:7777/api';
   
   constructor(
+    private http: HttpClient,
     private router: Router
-  ) { }
+  ) {}
 
   public goSearch(input: string, filter): void {
     if(input) filter.query=input;
@@ -30,24 +35,27 @@ export class SearchService {
     })
   }
 
-  public getFilterData(): Observable<any> {
-    return Observable.create(observer => {
-      observer.next({
-        os: ['android', 'ios', 'windows'],
-        brands: ['lg', 'acer', 'xiaomi', 'huawei', 'apple']
-      });
-      observer.complete();
-    })
+  public async getFilterData(): Promise<any> {
+    return {
+      os: this.os || await this.fetchOsList(),
+      brands: this.brands || await this.fetchBrands()
+    }
   }
 
   public getPhones(): Observable<any> {
     const partialUrl = this.router.routerState.snapshot.url;
-    const url = this.baseUrl + partialUrl;
-    console.log('przyszly get ', url);
-    
-    return Observable.create(observer => {
-      observer.next(phones);
-      observer.complete();
-    })
+    return this.http.get<any[]>(this.baseUrl + partialUrl);
+  }
+
+  private fetchBrands(): Promise<string[]> {
+    return this.http.get<string[]>(this.baseUrl+'/brands')
+      .do(results => this.brands = results)
+      .toPromise()
+  }
+
+  private fetchOsList(): Promise<string[]> {
+    return this.http.get<string[]>(this.baseUrl+'/os')
+      .do(results => this.os = results)
+      .toPromise()
   }
 }

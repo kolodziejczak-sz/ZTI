@@ -4,14 +4,14 @@
       <label>OS</label>
       <select formControlName="os">
         <option value="">Any</option>
-        <option *ngFor="let os of filterData.os" [value]="os">{{ os | prettyString }}</option>
+        <option *ngFor="let os of filterData?.os" [value]="os">{{ os | prettyString }}</option>
       </select>
     </div>
     <div class="form-control">
       <label>Brand</label>
       <select formControlName="brand">
         <option value="">Any</option>
-        <option *ngFor="let brand of filterData.brands" [value]="brand">{{ brand | prettyString }}</option>
+        <option *ngFor="let brand of filterData?.brands" [value]="brand">{{ brand | prettyString }}</option>
       </select>
     </div>
     <div class="form-control">
@@ -19,13 +19,6 @@
       <div class="range">
         <input formControlName="price-from" type="number" placeholder="from"/>
         <input formControlName="price-to" type="number" placeholder="to"/>
-      </div>
-    </div>
-    <div class="form-control">
-      <label>RAM (GB)</label>
-      <div class="range">
-        <input formControlName="ram-from" type="number" placeholder="from"/>
-        <input formControlName="ram-to" type="number" placeholder="to"/>
       </div>
     </div>
     <div class="form-control">

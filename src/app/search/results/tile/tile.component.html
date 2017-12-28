@@ -1,19 +1,19 @@
 <figure (click)="figureClick()">
-    <img [src]="phone?.img_url"/>
-    <figcaption>{{ phone?.brand + phone?.model }}</figcaption>    
+    <img [src]="phone?.image"/>
+    <figcaption>{{ phone?.brand + ' ' + phone?.model }}</figcaption>    
 </figure>
 <div class="details">
   <div class="row">
-    <span>Display</span><span>{{ phone?.display_resolution }}</span>        
+    <span>Display</span><span>{{ phone?.displayInch + '"' }}</span>        
   </div>
-  <div class="row">        
-    <span>Memory</span><span>{{ phone?.RAM }}</span>
+  <div class="row">
+    <span>{{ phone?.camera + 'MPX' }}</span>
   </div>
   <div class="row">
     <span>OS</span><span>{{ phone?.OS }}</span>
   </div>
   <div class="row">
-    <span>{{ phone?.CPU }}</span>
+    <span>RAM</span><span>{{ phone?.RAM + 'GB' }}</span>
   </div>
 </div>
-<span class="price">{{ phone?.approx_price_EUR + '€' }}</span>
+<span class="price">{{ phone?.price + '€' }}</span>

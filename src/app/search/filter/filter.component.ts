@@ -25,7 +25,10 @@ export class FilterComponent implements OnInit {
   public ngOnInit() {
     this.form = this.buildForm();
     if(this.value) this.setInitValue();
-    this.searchService.getFilterData().subscribe(filterData => this.filterData=filterData);
+    this.searchService.getFilterData().then(filterData => {
+      this.filterData=filterData;
+      console.log("pobrano ",filterData)
+    });
   }
 
   public getValue(): Filter {
@@ -47,8 +50,6 @@ export class FilterComponent implements OnInit {
       'brand': ['', [Validators.required]],
       'price-from': ['', [Validators.min(0)]],
       'price-to': ['', [Validators.min(0)]],
-      'ram-from': ['', [Validators.min(0), Validators.max(100)]],
-      'ram-to': ['', [Validators.min(0), Validators.max(100)]],
       'display-inch-from': ['', [Validators.min(0), Validators.max(10)]],
       'display-inch-to': ['', [Validators.min(0), Validators.max(10)]]
     })
