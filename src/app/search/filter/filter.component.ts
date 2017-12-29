@@ -50,6 +50,8 @@ export class FilterComponent implements OnInit {
       'brand': ['', [Validators.required]],
       'price-from': ['', [Validators.min(0)]],
       'price-to': ['', [Validators.min(0)]],
+      'ram-from': ['', [Validators.min(0)]],
+      'ram-to': ['', [Validators.max(100)]],
       'display-inch-from': ['', [Validators.min(0), Validators.max(10)]],
       'display-inch-to': ['', [Validators.min(0), Validators.max(10)]]
     })
