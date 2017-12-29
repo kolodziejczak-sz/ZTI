@@ -1,0 +1,21 @@
+
+PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>
+    PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT ?model ?img ?label ?os ?brand ?price ?ram ?dsize {
+      ?model rdf:type phones:model .
+      ?model phones:image ?img .
+      ?model rdfs:label ?label .
+      ?model phones:has_os ?os .
+      ?model phones:made_by ?brand .
+      ?model phones:price_eur ?price .
+      ?model phones:display_size ?dsize .
+      ?model phones:has_ram ?ram .
+    } LIMIT 20
+
+====
+
+localhost:8080/query?query=PREFIX%20phones%3A%20%3Chttp%3A%2F%2Fwww.semanticweb.org%2FZTI%2Fontologies%2F2017%2F10%2Fphones%23%3E%0A%20%20%20%20PREFIX%20rdf%3A%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0A%20%20%20%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%20%20%20%20PREFIX%20xsd%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0A%0A%20%20%20%20SELECT%20%3Fmodel%20%3Fimg%20%3Flabel%20%3Fos%20%3Fbrand%20%3Fprice%20%3Fram%20%3Fdsize%20%7B%0A%20%20%20%20%20%20%3Fmodel%20rdf%3Atype%20phones%3Amodel%20.%0A%20%20%20%20%20%20%3Fmodel%20phones%3Aimage%20%3Fimg%20.%0A%20%20%20%20%20%20%3Fmodel%20rdfs%3Alabel%20%3Flabel%20.%0A%20%20%20%20%20%20%3Fmodel%20phones%3Ahas_os%20%3Fos%20.%0A%20%20%20%20%20%20%3Fmodel%20phones%3Amade_by%20%3Fbrand%20.%0A%20%20%20%20%20%20%3Fmodel%20phones%3Aprice_eur%20%3Fprice%20.%0A%20%20%20%20%20%20%3Fmodel%20phones%3Adisplay_size%20%3Fdsize%20.%0A%20%20%20%20%20%20%3Fmodel%20phones%3Ahas_ram%20%3Fram%20.%0A%20%20%20%20%7D%20LIMIT%2020
+
