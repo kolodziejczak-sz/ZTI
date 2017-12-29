@@ -44,7 +44,7 @@ export class DetailComponent implements OnInit {
     .paramMap
     .map(params => params.get('id') || '')
     .subscribe(id => {
-      this.searchService.fetchDetail(+id)
+      this.searchService.fetchDetail(id)
       .subscribe(
         phone => this.phone = phone,
         err => this.err = true

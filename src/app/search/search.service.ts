@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { phones } from '../mockup-data';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/do';
@@ -10,7 +9,6 @@ export class SearchService {
 
   private os: Array<string>;
   private brands: Array<string>;
-  private mockupData = phones;
   private baseUrl = 'http://localhost:7777/api';
   
   constructor(
@@ -23,16 +21,13 @@ export class SearchService {
     this.router.navigate(['/search', filter])
   }
 
-  public goToDetail(id: number): void {
-    this.router.navigate(['/detail', id]);
+  public goToDetail(model: string): void {
+    this.router.navigate(['/detail', model]);
   }
 
-  public fetchDetail(id: number): Observable<any> {
-    const phone = phones.filter(phone => phone.id===id).pop();
-    return Observable.create(observer => {
-      observer.next(phone);
-      observer.complete();
-    })
+  public fetchDetail(model: string): Observable<any> {
+    const partialUrl = '/detail/' + model;
+    return this.http.get(this.baseUrl + partialUrl);
   }
 
   public async getFilterData(): Promise<any> {

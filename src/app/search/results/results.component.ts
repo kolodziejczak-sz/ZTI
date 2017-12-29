@@ -23,8 +23,8 @@ export class ResultsComponent implements OnInit {
     private router: Router
   ) {}
 
-  public goToDetail(id: number): void {
-    this.searchService.goToDetail(id);
+  public goToDetail($event: string): void {
+    this.searchService.goToDetail($event);
   }
 
   public toggleSidebar(): void {

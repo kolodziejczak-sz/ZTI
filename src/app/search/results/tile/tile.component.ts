@@ -14,7 +14,6 @@ export class TileComponent {
   @Output() click = new EventEmitter<number>();
 
   public figureClick(): void {
-    console.log("ajdiczek", this.phone.id);
-    this.click.emit(this.phone.id);
+    this.click.emit(this.phone.model);
   }
 }
