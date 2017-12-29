@@ -33,9 +33,12 @@ app.get('/api/detail/:model', function (req, res) {
     PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     SELECT * {
       ?model rdf:type :model .
-      ?model rdfs:label ?model .
+      ?model rdfs:label ?label .
+      ?model rdfs:image ?img .
+      ?model rdfs:made_by ?brand .
+      ?model rdfs:model ?model .
       ?model ?p ?s .
-      FILTER regex(str(?model),\"${model}\", \"i\")
+      FILTER regex(?model,${model})
     } LIMIT 1`;
 
   rdfStore.query(storage, query, (err, result) => {
@@ -92,77 +95,35 @@ app.get('/api/brands', function (req, res) {
 app.get('/api/search*', function (req, res) {
   const p = matrixParser.convert(req.url);
 
-  let allModelsQuery = `
-  PREFIX :<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>
-  PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-  
-  SELECT ?model {
-  ?model :image ?image .
-  }
-  LIMIT 5
-  `;
+  let query = `
+    PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>
+    PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    
+    SELECT ?img ?label ?brand ?price ?ram ?dsize {
+      ?model rdf:type phones:model .
+      ?model phones:image ?img .
+      ?model rdfs:label ?label .
+      ?model phones:model ?model .
+      ?model phones:made_by ?brand .
+      ?model phones:price_eur ?price .
+      ?model phones:display_size ?dsize .
+      ?model phones:has_ram ?ram .
+      ${getFilters(p)}
+    } LIMIT 20`
 
-
-
-  rdfStore.query(storage, allModelsQuery, (err, result) => {
-
-    let resultArray = [];
-    for (let i = 0, len = result.length; i < len; i++) {
-      let currentModel = result[i].model.value;
-      console.log(currentModel);
-
-
-      let perModelQuery = `
-      PREFIX :<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>
-      PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-      SELECT * {<${currentModel}> ?p ?o
-      `;
-
-      // let perModelQuery =`
-      // PREFIX :<http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>
-      // PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      // PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-      // PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-      //
-      // SELECT * {
-      //   <${currentModel}> :image ?image .
-      //   <${currentModel}> :primary_camera ?camera .
-      //   <${currentModel}> :has_memory ?RAM .
-      //   <${currentModel}> :price_eur ?price .
-      //   <${currentModel}> :display_size ?displayInch .
-      // `;
-      //perModelQuery+= p.brand ? `?model :made_by :${p.brand} .`:`?model :made_by ?brand .`;
-      //if(p.brand)             query+=`FILTER regex(str(?brand),\"${p.brand}\", \"i\")`;
-      //query+= p.os ? `?model :has_os :${p.os} .`:`?model :has_os ?OS .`;
-      // if(p.os)                perModelQuery+=`FILTER regex(str(?os),\"${p.os}\", \"i\")`;
-      // if(p.price_from)        perModelQuery+=`FILTER (xsd:integer(?price) > ${p.price_from}) `;
-      // if(p.price_to)          perModelQuery+=`FILTER (xsd:integer(?price) < ${p.price_to}) `;
-      // if(p.display_inch_from) perModelQuery+=`FILTER (xsd:float(?dsize) > ${p.display_inch_from}) `;
-      // if(p.display_inch_to)   perModelQuery+=`FILTER (xsd:float(?dsize) < ${p.display_inch_to}) `;
-      perModelQuery+='} LIMIT 20';
-
-      rdfStore.query(storage, perModelQuery, (err, result) => {
-        if(err) {
-          res.status(500).send({
-            message:'Some error occured during fetching phones.',
-            description:err
-          });
-        } else {
-
-          console.log(`model: ${currentModel} \n`+JSON.stringify(result))
-          resultArray.push({model:currentModel, result:result});
-          console.log(JSON.stringify(resultArray));
-        }
-      })
-
+  rdfStore.query(storage, query, (err, result) => {
+    if(err) {
+      res.status(500).send({
+        message:'Some error occured during fetching phones.',
+        description:err
+      });
+    } else {
+      result = processResult(result);
+      res.send(result);
     }
-    //res.send(resultArray);
   })
-
 });
 
 function processResult(result) {
@@ -177,6 +138,20 @@ function processResult(result) {
     }
     return phone;
   })
+}
+
+function getFilters(p) {
+  var filters = [];
+  p.query && filters.push(`FILTER (CONTAINS(?model, ${p.query}))`);
+  p.os && filters.push(`FILTER (CONTAINS(?os, ${p.os}))`);
+  p.brand && filters.push(`FILTER (REGEX(?brand,${p.brand}))`);
+  p.price_from && filters.push(`FILTER (xsd:float(?price) > ${p.price_from})`);
+  p.price_to && filters.push(`FILTER (xsd:float(?price) < ${p.price_to})`);
+  p.ram_from && filters.push(`FILTER (xsd:float(?ram) > ${p.ram_from})`);
+  p.ram_to && filters.push(`FILTER (xsd:float(?ram) < ${p.ram_to})`);
+  p.display_inch_from && filters.push(`FILTER (xsd:float(?dsize) > ${p.display_inch_from})`);
+  p.display_inch_to && filters.push(`FILTER (xsd:float(?dsize) < ${p.display_inch_to})`);
+  return filters.join(' ');
 }
 
 function init() {

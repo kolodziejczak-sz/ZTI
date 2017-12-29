@@ -48,12 +48,12 @@ export class FilterComponent implements OnInit {
     return this.fb.group({
       'os': ['', [Validators.required]],
       'brand': ['', [Validators.required]],
-      'price-from': ['', [Validators.min(0)]],
-      'price-to': ['', [Validators.min(0)]],
-      'ram-from': ['', [Validators.min(0)]],
-      'ram-to': ['', [Validators.max(100)]],
-      'display-inch-from': ['', [Validators.min(0), Validators.max(10)]],
-      'display-inch-to': ['', [Validators.min(0), Validators.max(10)]]
+      'price_from': ['', [Validators.min(0)]],
+      'price_to': ['', [Validators.min(0)]],
+      'ram_from': ['', [Validators.min(0)]],
+      'ram_to': ['', [Validators.max(100)]],
+      'display_inch_from': ['', [Validators.min(0), Validators.max(10)]],
+      'display_inch_to': ['', [Validators.min(0), Validators.max(10)]]
     })
   }
 }

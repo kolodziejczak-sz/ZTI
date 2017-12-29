@@ -22,8 +22,7 @@ export class DetailComponent implements OnInit {
 
   public get groups(): Array<Array<any>> {
     const obj=Object.assign({},this.phone);
-    delete obj['id'];
-    delete obj['img_url'];
+    delete obj['img'];
     const groups = [];
     const itemsPerGroup=18;
     let groupIndex=0;
