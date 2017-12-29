@@ -32,11 +32,10 @@ app.get('/api/detail/:model', function (req, res) {
     PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>
     PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     SELECT * {
-      ?model rdf:type :model .
+      ?model rdf:type phones:model .
       ?model rdfs:label ?label .
-      ?model rdfs:image ?img .
-      ?model rdfs:made_by ?brand .
-      ?model rdfs:model ?model .
+      ?model phones:image ?img .
+      ?model phones:made_by ?brand .
       ?model ?p ?s .
       FILTER regex(?model,${model})
     } LIMIT 1`;
@@ -101,11 +100,11 @@ app.get('/api/search*', function (req, res) {
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     
-    SELECT ?img ?label ?brand ?price ?ram ?dsize {
+    SELECT ?model ?img ?label ?os ?brand ?price ?ram ?dsize {
       ?model rdf:type phones:model .
       ?model phones:image ?img .
       ?model rdfs:label ?label .
-      ?model phones:model ?model .
+      ?model phones:has_os ?os .
       ?model phones:made_by ?brand .
       ?model phones:price_eur ?price .
       ?model phones:display_size ?dsize .
