@@ -38,7 +38,7 @@ public class Backend {
         return executor.execute(brandsQuery);
     }
 
-    //http://localhost:8080/api/detail/?model=A21
+    //http://localhost:7777/api/detail/?model=A21
     @RequestMapping("/api/detail/")
     public String getDetails(@QueryParam("model") String model) {
 
@@ -57,8 +57,8 @@ public class Backend {
         return executor.execute(modelQuery);
     }
 
-    //http://localhost:8080/api/search/;price_to=200;os=android;display_inch_from=1
-    @RequestMapping("/api/search/{data}")
+    //http://localhost:7777/api/search/;price_to=200;os=android;display_inch_from=1
+    @RequestMapping("/api/search{data}")
     //public String search(@MatrixVariable(name = "price_to", required = false) String price) {
     public String search(@MatrixVariable Map<String, String> matrixVars) {
 
