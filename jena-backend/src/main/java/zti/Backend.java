@@ -62,7 +62,7 @@ public class Backend {
         return executor.execute(modelQuery, NESTED);
     }
 
-    //http://localhost:7777/api/search;price_from=1
+    //http://localhost:7777/api/search;price_from=22;ram_from=2;display_inch_from=2;os=iOs
     @RequestMapping("/api/search{data}")
     //public String search(@MatrixVariable(name = "price_to", required = false) String price) {
     public String search(@MatrixVariable Map<String, String> matrixVars) {
@@ -93,9 +93,9 @@ public class Backend {
     private String getFilters(Map<String,String> map){
         String filters = "";
 
-        filters += map.containsKey("query") ? "FILTER (CONTAINS(?model,\" "+map.get("query")+"\"))\n" : "";
-        filters += map.containsKey("os") ? "FILTER (CONTAINS(?os, \""+map.get("os")+"\"))\n" : "";
-        filters += map.containsKey("brand") ? "FILTER (CONTAINS(?brand, \""+map.get("brand")+"\"))\n" : "";
+        filters += map.containsKey("query") ? "FILTER regex(str(?model),\" "+map.get("query")+"\", \"i\")\n" : "";
+        filters += map.containsKey("os") ? "FILTER regex(str(?os), \""+map.get("os")+"\", \"i\")\n" : "";
+        filters += map.containsKey("brand") ? "FILTER (regex(str(?brand), \""+map.get("brand")+"\", \"i\")\n" : "";
         filters += map.containsKey("price_from") ? "FILTER (xsd:float(?price) > "+map.get("price_from")+")\n" : "";
         filters += map.containsKey("price_to") ? "FILTER (xsd:float(?price) < "+map.get("price_to")+")\n" : "";
         filters += map.containsKey("ram_from") ? "FILTER (xsd:float(?ram) > "+map.get("ram_from")+")\n" : "";
