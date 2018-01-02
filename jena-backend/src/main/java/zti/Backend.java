@@ -41,9 +41,11 @@ public class Backend {
         return executor.execute(brandsQuery, FLAT);
     }
 
-    //http://localhost:7777/api/detail/?model=A21
+    //http://localhost:7777/api/detail/?model=HuaweiG8
     @RequestMapping("/api/detail/")
     public String getDetails(@QueryParam("model") String model) {
+
+        String modelFilter = "FILTER regex(?model,\""+model+"\")\n";
 
         String modelQuery =
         "PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>\n"+
@@ -55,12 +57,12 @@ public class Backend {
                 "?model phones:image ?img .\n"+
                 "?model phones:made_by ?brand .\n"+
                 "?model ?p ?s .\n"+
-        "FILTER regex(?label,\""+model+"\")\n"+
-    "} LIMIT 1" ;
+        "FILTER regex(str(?model),\""+model+"\")\n"+
+    "} ";
         return executor.execute(modelQuery, NESTED);
     }
 
-    //http://localhost:7777/api/search/;price_to=200;os=android;display_inch_from=1
+    //http://localhost:7777/api/search;price_from=1
     @RequestMapping("/api/search{data}")
     //public String search(@MatrixVariable(name = "price_to", required = false) String price) {
     public String search(@MatrixVariable Map<String, String> matrixVars) {

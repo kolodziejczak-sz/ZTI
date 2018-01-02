@@ -32,6 +32,8 @@ public class QueryExecutor {
 
         String json = new String(outputStream.toByteArray());
 
+        System.out.println(json);
+
         return formattingStrategy.cleanJson(json);
     }
 
