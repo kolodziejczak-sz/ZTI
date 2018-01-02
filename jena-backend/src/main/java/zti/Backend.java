@@ -1,5 +1,8 @@
 package zti;
 
+import static zti.FormattingStrategy.NESTED;
+import static zti.FormattingStrategy.FLAT;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,7 @@ public class Backend {
         "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"+
         "SELECT ?x WHERE { ?x rdfs:subClassOf phones:OS . }\n";
 
-        return executor.execute(osQuery);
+        return executor.execute(osQuery, FLAT);
     }
 
     @RequestMapping("/api/brands")
@@ -35,7 +38,7 @@ public class Backend {
         String brandsQuery = "PREFIX phones: <http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#>\n" +
                 "  SELECT DISTINCT ?x {?p phones:made_by ?x}\n";
 
-        return executor.execute(brandsQuery);
+        return executor.execute(brandsQuery, FLAT);
     }
 
     //http://localhost:7777/api/detail/?model=A21
@@ -54,7 +57,7 @@ public class Backend {
                 "?model ?p ?s .\n"+
         "FILTER regex(?label,\""+model+"\")\n"+
     "} LIMIT 1" ;
-        return executor.execute(modelQuery);
+        return executor.execute(modelQuery, NESTED);
     }
 
     //http://localhost:7777/api/search/;price_to=200;os=android;display_inch_from=1
@@ -81,7 +84,7 @@ public class Backend {
                 getFilters(matrixVars)+
                 "    } LIMIT 20";
 
-        return executor.execute(searchQuery);
+        return executor.execute(searchQuery, NESTED);
     }
 
 

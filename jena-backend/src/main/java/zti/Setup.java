@@ -4,10 +4,7 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
 
-
-import java.io.File;
 import java.io.InputStream;
-import java.nio.file.Paths;
 
 public class Setup {
 
