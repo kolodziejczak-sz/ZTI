@@ -24,6 +24,7 @@ public class Backend {
         this.executor = queryExecutor;
     }
 
+  @CrossOrigin
     @RequestMapping("/api/os")
     public String getOperatingSystems() {
 
@@ -33,7 +34,7 @@ public class Backend {
 
         return executor.execute(osQuery, FLAT);
     }
-
+    @CrossOrigin
     @RequestMapping("/api/brands")
     public String getBrands() {
 
@@ -44,6 +45,7 @@ public class Backend {
     }
 
     //http://localhost:7777/api/detail/?model=HuaweiG8
+    @CrossOrigin
     @RequestMapping("/api/detail/")
     public String getDetails(@QueryParam("model") String model) {
 
@@ -65,6 +67,7 @@ public class Backend {
     }
 
     //http://localhost:7777/api/search;price_from=22;ram_from=2;display_inch_from=2;os=iOs
+    @CrossOrigin
     @RequestMapping("/api/search{data}")
     //public String search(@MatrixVariable(name = "price_to", required = false) String price) {
     public String search(@MatrixVariable Map<String, String> matrixVars) {
