@@ -22,11 +22,11 @@ export class SearchService {
   }
 
   public goToDetail(model: string): void {
-    this.router.navigate(['/detail', model]);
+    this.router.navigate(['/detail/'], { queryParams: { model: model}});
   }
 
   public fetchDetail(model: string): Observable<any> {
-    const partialUrl = '/detail/' + model;
+    const partialUrl = '/detail/?model=' + model;
     return this.http.get(this.baseUrl + partialUrl);
   }
 

@@ -20,32 +20,18 @@ export class DetailComponent implements OnInit {
     private location: Location
   ){}
 
-  public get groups(): Array<Array<any>> {
+  public get model(): Array<Array<any>> {
     const obj=Object.assign({},this.phone);
     delete obj['img'];
-    const groups = [];
-    const itemsPerGroup=18;
-    let groupIndex=0;
-    let group=[];
-    Object.entries(obj).forEach((entry, index) => {
-      if(index>0 && index%itemsPerGroup===0) {
-        groupIndex++;
-        groups.push(group);
-        group=[];
-      }
-      group.push(entry);
-    });
-    return groups;
+    return Object.entries(obj);
   }
 
   public ngOnInit(): void {
-    this.route
-    .paramMap
-    .map(params => params.get('id') || '')
-    .subscribe(id => {
-      this.searchService.fetchDetail(id)
+    this.route.queryParams.subscribe(params => {
+      const model = params.model
+      this.searchService.fetchDetail(model)
       .subscribe(
-        phone => this.phone = phone,
+        phone => this.phone = phone[0],
         err => this.err = true
       )
     });

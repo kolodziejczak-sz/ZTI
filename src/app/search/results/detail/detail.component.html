@@ -10,17 +10,15 @@
         <span class="brand">{{ phone.brand }}</span>
         <span class="model">{{ phone.label }}</span>
       </figcaption>
-      <img [src]="phone?.img"/>
+      <img [src]="phone.img"/>
     </figure>
     <section class="details">
       <h2>Full Specification</h2>
       <div class="table">
-        <div class="group" *ngFor="let group of groups">
-          <div class="row" *ngFor="let row of group">
-              <div>{{ row[0] | prettyString }}</div>
-              <div>{{ row[1] }}</div>
-            </div>
-        </div>
+          <div class="row" *ngFor="let key of model">
+            <div>{{ key[0] | prettyString }}</div>
+            <div>{{ key[1] }}</div>
+          </div>
       </div>
     </section>
   </ng-container>

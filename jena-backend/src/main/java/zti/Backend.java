@@ -46,7 +46,7 @@ public class Backend {
 
     //http://localhost:7777/api/detail/?model=HuaweiG8
     @CrossOrigin
-    @RequestMapping("/api/detail/")
+    @RequestMapping("/api/detail")
     public String getDetails(@QueryParam("model") String model) {
 
         String modelFilter = "FILTER regex(?model,\""+model+"\")\n";
@@ -60,7 +60,10 @@ public class Backend {
                 "?model rdfs:label ?label .\n"+
                 "?model phones:image ?img .\n"+
                 "?model phones:made_by ?brand .\n"+
-                "?model ?p ?s .\n"+
+                "?model phones:has_os ?os .\n" +
+                "?model phones:price_eur ?price .\n" +
+                "?model phones:display_size ?dsize .\n" +
+                "?model phones:has_ram ?ram .\n" +
         "FILTER regex(str(?model),\""+model+"\")\n"+
     "} ";
         return executor.execute(modelQuery, NESTED);
