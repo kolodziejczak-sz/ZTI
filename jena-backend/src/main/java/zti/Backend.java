@@ -97,13 +97,13 @@ public class Backend {
 
         filters += map.containsKey("query") ? "FILTER regex(str(?model),\" "+map.get("query")+"\", \"i\")\n" : "";
         filters += map.containsKey("os") ? "FILTER regex(str(?os), \""+map.get("os")+"\", \"i\")\n" : "";
-        filters += map.containsKey("brand") ? "FILTER (regex(str(?brand), \""+map.get("brand")+"\", \"i\")\n" : "";
-        filters += map.containsKey("price_from") ? "FILTER (xsd:float(?price) > "+map.get("price_from")+")\n" : "";
-        filters += map.containsKey("price_to") ? "FILTER (xsd:float(?price) < "+map.get("price_to")+")\n" : "";
-        filters += map.containsKey("ram_from") ? "FILTER (xsd:float(?ram) > "+map.get("ram_from")+")\n" : "";
-        filters += map.containsKey("ram_to") ? "FILTER (xsd:float(?ram) < "+map.get("ram_to")+")\n" : "";
-        filters += map.containsKey("display_inch_from") ? "FILTER (xsd:float(?dsize) > "+map.get("display_inch_from")+")\n" : "";
-        filters += map.containsKey("display_inch_to") ? "FILTER (xsd:float(?dsize) < "+map.get("display_inch_to")+")\n" : "";
+        filters += map.containsKey("brand") ? "FILTER regex(str(?brand), \""+map.get("brand")+"\", \"i\")\n" : "";
+        filters += map.containsKey("price_from") ? "FILTER (xsd:float(?price) >= "+map.get("price_from")+")\n" : "";
+        filters += map.containsKey("price_to") ? "FILTER (xsd:float(?price) <= "+map.get("price_to")+")\n" : "";
+        filters += map.containsKey("ram_from") ? "FILTER (xsd:float(?ram) >= "+map.get("ram_from")+")\n" : "";
+        filters += map.containsKey("ram_to") ? "FILTER (xsd:float(?ram) <= "+map.get("ram_to")+")\n" : "";
+        filters += map.containsKey("display_inch_from") ? "FILTER (xsd:float(?dsize) >= "+map.get("display_inch_from")+")\n" : "";
+        filters += map.containsKey("display_inch_to") ? "FILTER (xsd:float(?dsize) <= "+map.get("display_inch_to")+")\n" : "";
 
         return filters;
     }
