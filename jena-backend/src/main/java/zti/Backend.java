@@ -1,9 +1,10 @@
 package zti;
 
-import static zti.FormattingStrategy.NESTED;
 import static zti.FormattingStrategy.FLAT;
+import static zti.FormattingStrategy.NESTED;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.util.Map;
 import javax.ws.rs.QueryParam;
 
 @RestController
+@CrossOrigin
 public class Backend {
 
     private QueryExecutor executor;
