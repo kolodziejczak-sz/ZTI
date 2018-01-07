@@ -9,7 +9,7 @@ public class Application {
 
     @Bean
     QueryExecutor queryExecutor(){
-        return new QueryExecutor(Setup.setup());
+        return new QueryExecutor(OntologyModelFactory.setup());
     }
 
     public static void main(String[] args) {

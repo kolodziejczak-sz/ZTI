@@ -6,7 +6,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 
 import java.io.InputStream;
 
-public class Setup {
+class OntologyModelFactory {
 
     static OntModel setup() {
         String fileName = "phones.owl";

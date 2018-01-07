@@ -14,17 +14,16 @@ import java.util.Map;
 import javax.ws.rs.QueryParam;
 
 @RestController
-@CrossOrigin
-public class Backend {
+public class QueryResource {
 
     private QueryExecutor executor;
 
     @Autowired
-    public Backend(QueryExecutor queryExecutor) {
+    public QueryResource(QueryExecutor queryExecutor) {
         this.executor = queryExecutor;
     }
 
-  @CrossOrigin
+    @CrossOrigin
     @RequestMapping("/api/os")
     public String getOperatingSystems() {
 
