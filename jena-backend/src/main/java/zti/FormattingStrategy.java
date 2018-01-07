@@ -10,8 +10,8 @@ public enum FormattingStrategy {
 
     FLAT {
         @Override
-        String cleanJson(String jsonString) {
-            String nested = NESTED.cleanJson(jsonString);
+        String formatJson(String jsonString) {
+            String nested = NESTED.formatJson(jsonString);
             JsonArray nestedJson = new JsonArray(nested);
 
             JsonArray updatedJson = new JsonArray();
@@ -24,7 +24,7 @@ public enum FormattingStrategy {
         }
     }, NESTED {
         @Override
-        String cleanJson(String jsonString) {
+        String formatJson(String jsonString) {
             JsonObject json = new JsonObject(jsonString);
 
             JsonArray bindings = json.getJsonObject("results").getJsonArray("bindings");
@@ -50,6 +50,6 @@ public enum FormattingStrategy {
     private static final String ONTOLOGY_PREFIX = "http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#";
     private static final String SINGLE_VARIABLE_QUERY_PLACEHOLDER = "x";
 
-    abstract String cleanJson(String jsonString);
+    abstract String formatJson(String jsonString);
 }
 

@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream;
 
 
 @AllArgsConstructor
-public class QueryExecutor {
+class QueryExecutor {
 
     OntModel model;
 
@@ -34,7 +34,7 @@ public class QueryExecutor {
 
         System.out.println(json);
 
-        return formattingStrategy.cleanJson(json);
+        return formattingStrategy.formatJson(json);
     }
 
 }
