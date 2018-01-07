@@ -101,7 +101,7 @@ public class Backend {
     private String getFilters(Map<String,String> map){
         String filters = "";
 
-        filters += map.containsKey("query") ? "FILTER regex(str(?model),\" "+map.get("query")+"\", \"i\")\n" : "";
+        filters += map.containsKey("query") ? "FILTER regex(str(?model),\""+map.get("query")+"\", \"i\")\n" : "";
         filters += map.containsKey("os") ? "FILTER regex(str(?os), \""+map.get("os")+"\", \"i\")\n" : "";
         filters += map.containsKey("brand") ? "FILTER regex(str(?brand), \""+map.get("brand")+"\", \"i\")\n" : "";
         filters += map.containsKey("price_from") ? "FILTER (xsd:float(?price) >= "+map.get("price_from")+")\n" : "";
