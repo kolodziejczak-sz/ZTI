@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#"
+     xml:base="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#image -->
+
+    <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#image"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#price_eur -->
+
+    <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#price_eur"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_os -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_os">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_part -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_part">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#part_of"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#made_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#made_by">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#makes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#makes -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#makes">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#part_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#part_of">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#supports -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#supports">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#announced -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#announced">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#battery -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#battery">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#clock_frequency -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#clock_frequency">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#dimensions -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#dimensions"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_resolution -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_resolution">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_size -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display_size">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_cores -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_cores">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_memory -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_memory">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_ram -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#has_ram">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#primary_camera -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#primary_camera">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#secondary_camera -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#secondary_camera">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#weight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#weight">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Android -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Android">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#CPU -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#CPU"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Chipset -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Chipset"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPU -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPU"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Windows -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#Windows">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#brand -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#brand"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#display"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#iOS -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#iOS">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#OS"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#model -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#model"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#EDGE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#EDGE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPRS -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPRS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPS -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GPS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GSM -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#GSM">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#LTE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#LTE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#NFC -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#NFC">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#dualSim -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#dualSim">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#memory_card -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#memory_card">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#radio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#radio">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ZTI/ontologies/2017/10/phones#technology"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
