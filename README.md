@@ -13,3 +13,7 @@ Jena-backend = RESTful API w Springu, <br />
 backend = RESTful API w Node - odrzucone ze względu na wydajność biblioteki rdf-store <br />
 src = aplikacja SPA w angularze 5. <br />
 
+# Autorzy
+Tomasz Fengier,
+Tomasz Kot,
+Szymon Kołodziejczak
