@@ -5,9 +5,11 @@ w formacie RDF. Użytkownikom udostępniona została możliwość formułowania 
 filtrujących produkty na podstawie kryteriów takich jak model, marka, system operacyjny,
 cena i parametry sprzętowe. Projekt został zrealizowany w postaci aplikacji sieciowej
 
-
+# Ontologia
+Wszystkie pliki dotyczące ontologii znajdują się na branchu backend w folderze ontology.
 
 # Subprojekty
 Jena-backend = RESTful API w Springu, <br />
-backend = RESTfil API w Nodzie - odrzucone ze względu na wydajność biblioteki rdf-store <br />
+backend = RESTful API w Node - odrzucone ze względu na wydajność biblioteki rdf-store <br />
 src = aplikacja SPA w angularze 5. <br />
+
