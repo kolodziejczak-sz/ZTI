@@ -8,6 +8,6 @@ cena i parametry sprzętowe. Projekt został zrealizowany w postaci aplikacji si
 
 
 # Subprojekty
-Jena-backend = RESTful API w Springu,
-backend = RESTfil API w Nodzie - odrzucone ze względu na wydajność biblioteki rdf-store
-src = aplikacja SPA w angularze 5.
+Jena-backend = RESTful API w Springu, <br />
+backend = RESTfil API w Nodzie - odrzucone ze względu na wydajność biblioteki rdf-store <br />
+src = aplikacja SPA w angularze 5. <br />
